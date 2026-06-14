@@ -1,0 +1,18 @@
+1. Create a new folder
+2. Field validator for city + occupation feature
+3. Add routes
+	a. home -> heath_check
+4. Add model_version
+5. Seperation of logic
+	a. pydantic model
+	b. city tier
+	c. ML logic
+6. Try Catch
+7. Add confidence Score
+8. Response Model
+
+Also we can create a util.py script containing functions for feature creation because these features are used in both app and model_build. If it will be in utils.py, then we can just import and use at both places, no need to double writing. In this way any change at one place would be sufficient. No need to change at both places.
+
+Also can keep separate .yaml file for any configuration related things.
+
+Can write customexeptions in case of fields are not satisfying given criteria, so that streamlit app will not show some developer friendly code error. It will show user friendly error. E.g. if giving lpa=0, it's not showing user-friendly error msg. Can modify this by custom error message.

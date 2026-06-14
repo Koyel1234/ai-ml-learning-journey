@@ -1,0 +1,1 @@
+This is a codebase to experiment with different machine learning and deep learning algorithms from scratch. We can customize different implementations during experimentations via this. We can see if all implementations are working correctly by seeing sklearn results side by side.

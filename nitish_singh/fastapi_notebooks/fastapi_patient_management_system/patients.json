@@ -1,0 +1,52 @@
+{
+  "P001": {
+    "name": "Amit Sharma",
+    "city": "Mumbai",
+    "age": 28,
+    "gender": "Male",
+    "height": 1.75,
+    "weight": 72,
+    "bmi": 23.51,
+    "verdict": "Normal"
+  },
+  "P002": {
+    "name": "Priya Das",
+    "city": "Kolkata",
+    "age": 32,
+    "gender": "Female",
+    "height": 1.62,
+    "weight": 58,
+    "bmi": 22.10,
+    "verdict": "Normal"
+  },
+  "P003": {
+    "name": "Rahul Verma",
+    "city": "Delhi",
+    "age": 40,
+    "gender": "Male",
+    "height": 1.80,
+    "weight": 95,
+    "bmi": 29.32,
+    "verdict": "Overweight"
+  },
+  "P004": {
+    "name": "Sneha Iyer",
+    "city": "Bengaluru",
+    "age": 25,
+    "gender": "Female",
+    "height": 1.68,
+    "weight": 50,
+    "bmi": 17.72,
+    "verdict": "Underweight"
+  },
+  "P005": {
+    "name": "Arjun Singh",
+    "city": "Pune",
+    "age": 36,
+    "gender": "Male",
+    "height": 1.70,
+    "weight": 105,
+    "bmi": 36.33,
+    "verdict": "Obese"
+  }
+}
