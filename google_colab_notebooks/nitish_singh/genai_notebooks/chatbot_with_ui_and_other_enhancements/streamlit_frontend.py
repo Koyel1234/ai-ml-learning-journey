@@ -5,6 +5,8 @@ from langchain_core.messages import HumanMessage
 
 # st.session_state -> dict -> this resets only when user refreshes page, otherwise it will keep accumulating all messages, without it, normal list like below message_history with each user_input full script will be rerun again, with no saving of chat history
 
+CONFIG = {'configurable': {'thread_id': 'thread-1'}}
+
 if 'message_history' not in st.session_state:
     st.session_state['message_history'] = []
 
@@ -33,7 +35,7 @@ if user_input:
     with st.chat_message('user'):
         st.text(user_input)
 
-    chatbot.invoke({'messages': [HumanMessage(content=user_input)]})
+    response = chatbot.invoke({'messages': [HumanMessage(content=user_input)]}, config=CONFIG)
     ai_message = response['messages'][-1].content
                    
     # secondly add the new message to message_history
