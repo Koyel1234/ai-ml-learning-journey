@@ -1,4 +1,7 @@
 import streamlit as st
+from langgraph_backend import chatbot
+from langchain_core.messages import HumanMessage
+
 
 # st.session_state -> dict -> this resets only when user refreshes page, otherwise it will keep accumulating all messages, without it, normal list like below message_history with each user_input full script will be rerun again, with no saving of chat history
 
@@ -30,10 +33,12 @@ if user_input:
     with st.chat_message('user'):
         st.text(user_input)
 
-
+    chatbot.invoke({'messages': [HumanMessage(content=user_input)]})
+    ai_message = response['messages'][-1].content
+                   
     # secondly add the new message to message_history
-    st.session_state['message_history'].append({'role': 'assistant', 'content': user_input})
+    st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
     with st.chat_message('assistant'):
-        st.text(user_input)
+        st.text(ai_message)
 
 
