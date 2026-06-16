@@ -12,14 +12,14 @@ for message in st.session_state['message_history']:
     with st.chat_message(message['role']):
         st.text(message['content'])
 
-with st.chat_message('user'):
-    st.text('hi')
+#with st.chat_message('user'):
+ #   st.text('hi')
 
-with st.chat_message('assistant'):
-    st.text('How can i help you?')
+#with st.chat_message('assistant'):
+ #   st.text('How can i help you?')
 
-with st.chat_message('user'):
-    st.text('My name is Koyel')
+#with st.chat_message('user'):
+ #   st.text('My name is Koyel')
 
 user_input = st.chat_input('Type here')
 
