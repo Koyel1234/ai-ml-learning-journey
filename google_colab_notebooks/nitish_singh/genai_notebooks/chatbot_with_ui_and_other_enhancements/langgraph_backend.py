@@ -35,12 +35,12 @@ chatbot = graph.compile(checkpointer = checkpointer)
     #    )
 #print(type(stream))
 
-for message_chunk, metadata in chatbot.stream(
-        {'messages': [Humanessage(content='What is the recipe to make pasta')]},
-        config = {'configurable': {'thread_id': 'thread-1'}},
-        stream_mode = 'messages'
+#for message_chunk, metadata in chatbot.stream(
+ #       {'messages': [Humanessage(content='What is the recipe to make pasta')]},
+  #      config = {'configurable': {'thread_id': 'thread-1'}},
+   #     stream_mode = 'messages'
         ):
-    if message_chunk.content:
-        print(message_chunk.content, end=" ", flush=True)
+    #if message_chunk.content:
+     #   print(message_chunk.content, end=" ", flush=True)
 
 
