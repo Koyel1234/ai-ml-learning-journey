@@ -45,4 +45,14 @@ chatbot = graph.compile(checkpointer = checkpointer)
     #if message_chunk.content:
      #   print(message_chunk.content, end=" ", flush=True)
 
+#CONFIG = {'configurable': {'thread_id': 'thread-1'}}
+#
+#response = chatbot.invoke(
+#        {'messages': [HumanMessage(content='Hi my name is Koyel')]},
+#        config= CONFIG
+#        )
+#print(chatbot.get_state(config=CONFIG).values['messages'])
+
+
+
 
