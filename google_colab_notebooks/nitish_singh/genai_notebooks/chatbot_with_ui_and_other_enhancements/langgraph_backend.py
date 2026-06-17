@@ -35,6 +35,8 @@ chatbot = graph.compile(checkpointer = checkpointer)
     #    )
 #print(type(stream))
 
+
+# commented out streaming code in langgraph, but for API creation and testing from notebook, this code can be used
 #for message_chunk, metadata in chatbot.stream(
  #       {'messages': [Humanessage(content='What is the recipe to make pasta')]},
   #      config = {'configurable': {'thread_id': 'thread-1'}},
