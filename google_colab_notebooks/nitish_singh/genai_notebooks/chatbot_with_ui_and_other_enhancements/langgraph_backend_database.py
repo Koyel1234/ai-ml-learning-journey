@@ -1,3 +1,17 @@
+#-> create new frontend and backend files
+#-> install https://pypi.org/project/langgraph-checkpoint-sqlite/
+#-> implement database in backend
+#-> chat in multiple threads
+#-> install and visualize
+#-> integrate to frontend
+
+
+
+
+
+
+
+
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 from langchain_core.messages import BaseMessage
