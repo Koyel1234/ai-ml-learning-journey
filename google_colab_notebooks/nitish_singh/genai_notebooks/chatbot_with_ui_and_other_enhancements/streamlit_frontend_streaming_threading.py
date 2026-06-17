@@ -1,3 +1,33 @@
+##Steps for Adding Threading in UI
+#
+#-> add a sidebar with title + A Start Chat Button + A title named 'My Conversation'
+#-> generate dynamic thread id and add it to the session 
+#-> Diaply the thread id in sidebar
+#
+#****************************************************************************************
+#
+#-> add a New Chat button
+#-> On click of new chat open a new chat window
+#     * generate a new thread_id
+#     * save it in session
+#     * reset message history
+#
+#***************************************************************************************
+#
+#-> create a list to store all thread_ids
+#-> Load all the thread ids in the sidebar
+#-> convert the side bar text to clickable buttons
+#
+#***************************************************************************************
+#
+#-> on click of a particular thread id load that particular conversation
+
+
+
+
+
+
+
 import streamlit as st
 from langgraph_backend import chatbot
 from langchain_core.messages import HumanMessage
