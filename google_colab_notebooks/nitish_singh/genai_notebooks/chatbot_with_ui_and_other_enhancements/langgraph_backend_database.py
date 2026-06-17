@@ -14,11 +14,12 @@
 
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
-from langchain_core.messages import BaseMessage
+from langchain_core.messages import BaseMessage, HumanMessage
 from langchain_openai import ChatOpenAI
-from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.checkpoint.memory import SqliteSaver
 from langgraph.graph.message import add_messages
 from dotenv import load_dotenv
+import sqlite3
 
 load_dotenv()
 
@@ -32,8 +33,10 @@ def chat_node(state: ChatState):
     response = llm.invoke(messages)
     return {"messages": [response]}
 
+
+conn = sqlite3.connect(database='chatbot.db', check_same_thread=False)
 # Checkpointer
-checkpointer = InMemorySaver()
+checkpointer = SqliteSaver()
 
 graph = StateGraph(ChatState)
 graph.add_node("chat_node", chat_node)
@@ -55,7 +58,7 @@ chatbot = graph.compile(checkpointer = checkpointer)
  #       {'messages': [Humanessage(content='What is the recipe to make pasta')]},
   #      config = {'configurable': {'thread_id': 'thread-1'}},
    #     stream_mode = 'messages'
-        ):
+    #    ):
     #if message_chunk.content:
      #   print(message_chunk.content, end=" ", flush=True)
 
@@ -66,6 +69,14 @@ chatbot = graph.compile(checkpointer = checkpointer)
 #        config= CONFIG
 #        )
 #print(chatbot.get_state(config=CONFIG).values['messages'])
+
+
+CONFIG = {'configurable': {'thread_id': 'thread-1'}}
+response = chatbot.invoke(
+       {'messages': [HumanMessage(content='Hi my name is Koyel')]},
+       config= CONFIG
+       )
+print(response)
 
 
 
