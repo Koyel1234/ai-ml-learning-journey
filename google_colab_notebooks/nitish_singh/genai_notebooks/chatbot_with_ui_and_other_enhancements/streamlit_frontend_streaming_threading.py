@@ -51,6 +51,9 @@ def add_thread(thread_id):
     if thread_id not in st.session_state:
         st.session_state['chat_threads'].append(thread_id)
 
+def load_conversation(thread_id):
+    return chatbot.get_state(config={'configurable': {'thread_id': thread_id}}).values['messsages']
+
 # ************************************************** Session Setup ***************************************
 if 'message_history' not in st.session_state:
     st.session_state['message_history'] = []
@@ -77,10 +80,27 @@ st.sidebar.header('My Conversation')
 # st.sidebar.text(st.session_state['thread_id'])
 for thread_id in st.session_state['chat_threads']:
     #st.sidebar.text(thread_id)
-    st.sidebar.button(str(thread_id))
+    # st.sidebar.button(str(thread_id))
+    if st.sidebar.button(str(thread_id)):
+        st.session_state['thread_id'] = thread_id
+        messages = load_conversation(thread_id)
+
+        temp_messages = []
+
+        for msg in messages:
+            if isinstance(message, HumanMessage):
+                role = 'user'
+            else:
+                role='assistance'
+            temp_messages.append({'role': role, 'content': msg.content)
+
+        st.session_state['message_history'] = temp_messages
+
 
 # ************************************************** Main UI *****************************************
-
+# message history format below
+# {'role': 'user', 'content': 'Hi'}
+# {'role': 'assistant', 'content': 'Hello'}
 # loading the conversation history
 for message in st.session_state['message_history']:
     with st.chat_message(message['role']):
