@@ -71,13 +71,26 @@ chatbot = graph.compile(checkpointer = checkpointer)
 #print(chatbot.get_state(config=CONFIG).values['messages'])
 
 
-CONFIG = {'configurable': {'thread_id': 'thread-1'}}
-response = chatbot.invoke(
-       {'messages': [HumanMessage(content='Hi my name is Koyel')]},
-       config= CONFIG
-       )
-print(response)
+# CONFIG = {'configurable': {'thread_id': 'thread-1'}}
+# response = chatbot.invoke(
+#        {'messages': [HumanMessage(content='Hi my name is Koyel')]},
+#        config= CONFIG
+#        )
+# print(response)
+
+# print(checkpointer.list(None))
 
 
+def retrieve_all_threads():
+    all_threads = set()
+
+    for checkpointer in checkpointer.list(None):
+        # print(checkpointer)
+        # print(checkpointer.config)
+        # print(checkpointer.config['configurable']['thread_id'])
+        all_threads.add(checkpointer.config['configurable']['thread_id'])
+
+    print(list(all_threads))
+    return list(all_threads)
 
 
