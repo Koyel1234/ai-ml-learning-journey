@@ -57,6 +57,8 @@ st.sidebar.button('New Chat')
 
 st.sidebar.header('My Conversation')
 
+st.sidebar.text(st.session_state['thread_id'])
+
 # ************************************************** Main UI *****************************************
 
 # loading the conversation history
