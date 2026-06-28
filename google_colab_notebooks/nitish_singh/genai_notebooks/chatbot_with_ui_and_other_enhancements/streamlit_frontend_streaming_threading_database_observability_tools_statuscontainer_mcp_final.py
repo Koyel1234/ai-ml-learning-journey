@@ -54,6 +54,12 @@ def add_thread(thread_id):
 def load_conversation(thread_id):
     return chatbot.get_state(config={'configurable': {'thread_id': thread_id}}).values['messsages']
 
+def _submit_async(coro):
+    return asyncio.run_coroutine_threadsafe(coro, _ASYNC_LOOP)
+
+def run_async(coro):
+    return _submit_async(coro).result()
+
 def submit_async_task(coro):
     """Schedule a coroutine on the backend event loop."""
     return _submit_async(coro)
