@@ -20,9 +20,13 @@ llm = ChatOpenAI(model="gpt-5")
 client = MultiServerMCPClient(
     {
         "arith": {
-            "transport": "stdio",
+            "transport": "stdio", # as local mcp server so stdio
             "command": "python3",
             "args": ["./mcp_server.py"] # path to the server file
+        },
+        "expense": {
+            "tranport": "streamable_http", # if this fails try sse
+            "url": "https://splendid-gold-dingo.fastmcp.app/mcp"
         }
     }
 )
@@ -68,8 +72,10 @@ async def main():
     chatbot = await build_graph()
 
     # running the graph
+    # 1st question - Calculate modulus of 35 and 4
     result = await chatbot.ainvoke({"messages": [HumanMessage(content="Add an expense - Rs. 500/- to the Udemy course.")]})
-
+    # try different questions
+    
     print(result['message'][-1].content)
 
 if __name__ == '__main__':
