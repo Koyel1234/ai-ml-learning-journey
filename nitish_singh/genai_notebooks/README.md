@@ -26,7 +26,7 @@
     
     - Second way:<br>
     ```
-    import os<br>
+    import os
     os.environ[\<api-key-name\>] = "\<paste-your-api-key\>"
     ```
 
