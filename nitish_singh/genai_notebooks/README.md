@@ -25,10 +25,10 @@
     This will fetch the API key from .env file. Create an .env file having keys following the naming convention as shown later and put the sceret key in a string.
     
     - Second way:<br>
-    `
+    ```
     import os<br>
     os.environ[\<api-key-name\>] = "\<paste-your-api-key\>"
-    `
+    ```
 
 - We will go here with first way, as this is common industry practice. In any dev, staging or production case .env file should be gitignored (should not be pushed anyways for security purposes). For personal usecase, this key should be hidden as it will cost if used in unauthorized way.
 
