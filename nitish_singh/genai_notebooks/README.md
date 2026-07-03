@@ -17,8 +17,10 @@
 - We need API keys for each provider to use their LLM/ChatModel via their API. 
 - There are two ways of using it.
     - First way:<br>
-    `from dotenv import load_dotenv<br>
-    load_dotenv()`
+    ```
+    from dotenv import load_dotenv
+    load_dotenv()
+    ```
 
     This will fetch the API key from .env file. Create an .env file having keys following the naming convention as shown later and put the sceret key in a string.
     
