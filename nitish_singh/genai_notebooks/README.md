@@ -1,9 +1,9 @@
 ## Virtual Environment
 - Create a virtual environment via below command:<br>
-    `python -m venv \<venv_name\>
+    `python -m venv \<venv_name\>`
 - It will create a folder of \<venv_name\> in current directory.
 - Activate the virtual environemnt via below command:<br>
-    `source \<venv_name\>/Scripts/Activate
+    `source \<venv_name\>/Scripts/Activate`
 - This creation of virtual environment is one time activity.
 - Virtual environemnt should be activated each time work IDE is closed.
 
@@ -17,8 +17,8 @@
 - We need API keys for each provider to use their LLM/ChatModel via their API. 
 - There are two ways of using it.
     - First way:<br>
-    from dotenv import load_dotenv<br>
-    load_dotenv()
+    `from dotenv import load_dotenv<br>
+    load_dotenv()`
 
     This will fetch the API key from .env file. Create an .env file having keys following the naming convention as shown later and put the sceret key in a string.
     
