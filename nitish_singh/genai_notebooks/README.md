@@ -1,9 +1,9 @@
 ## Virtual Environment
 - Create a virtual environment via below command:<br>
-    `python -m venv \<venv_name\>`
+    `python -m venv <venv_name>`
 - It will create a folder of \<venv_name\> in current directory.
 - Activate the virtual environemnt via below command:<br>
-    `source \<venv_name\>/Scripts/Activate`
+    `source <venv_name>/Scripts/Activate`
 - This creation of virtual environment is one time activity.
 - Virtual environemnt should be activated each time work IDE is closed.
 
@@ -27,7 +27,7 @@
     - Second way:<br>
     ```
     import os
-    os.environ[\<api-key-name\>] = "\<paste-your-api-key\>"
+    os.environ[<api-key-name>] = "<paste-your-api-key>"
     ```
 
 - We will go here with first way, as this is common industry practice. In any dev, staging or production case .env file should be gitignored (should not be pushed anyways for security purposes). For personal usecase, this key should be hidden as it will cost if used in unauthorized way.
