@@ -7,6 +7,7 @@ load_dotenv()
 model = ChatOpenAI()
 
 #systemmsg is always added at top and `you are a helpful...` -this is system msg
+# adding message sender tag to differentiate who sends which message
 messages = [
     SystemMessage(content='You are a helpful assistant'), 
     HumanMessage(content = 'Tell me about LangChain')
