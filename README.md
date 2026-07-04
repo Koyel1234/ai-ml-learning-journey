@@ -123,6 +123,7 @@ All base educational materials are sourced from **public YouTube educational con
 - **Google Colab** - Collaborative learning materials
 - **LangChainHub** - Prompts from community contribution
 - **DockerHub** - Docker images contributed by community members
+- **HuggingFace** - Open-source GenAI models
 
 ### How to Find Sources
 Video links and playlists for each section will be added progressively to provide complete source attribution and enable direct verification of materials.
