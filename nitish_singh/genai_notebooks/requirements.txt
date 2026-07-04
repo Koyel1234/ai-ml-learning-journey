@@ -26,3 +26,7 @@ numpy
 scikit-learn
 
 ipykernel
+
+streamlit
+torch
+torchvision
