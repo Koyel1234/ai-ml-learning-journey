@@ -30,6 +30,10 @@ ipykernel
 streamlit
 torch
 torchvision
+sentence-transformers
 
 pydantic
 pydantic[email]
+
+# to visualize chains in LangChain
+grandalf
