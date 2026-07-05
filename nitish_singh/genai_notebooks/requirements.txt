@@ -30,3 +30,6 @@ ipykernel
 streamlit
 torch
 torchvision
+
+pydantic
+pydantic[email]
