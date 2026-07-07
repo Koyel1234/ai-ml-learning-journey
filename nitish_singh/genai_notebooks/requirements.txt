@@ -23,6 +23,10 @@ langchain-huggingface
 transformers
 huggingface-hub
 
+# document loading
+pypdf
+beautifulsoup4
+
 # Environment Variable Management
 python-dotenv
 
@@ -42,3 +46,6 @@ pydantic[email]
 
 # to visualize chains in LangChain
 grandalf
+
+# PDF Generation
+reportlab
