@@ -11,6 +11,9 @@ chromadb
 langchain-chroma
 titoken
 
+# retrievers
+wikipedia
+
 # OpenAI Integration
 langchain-openai
 openai
