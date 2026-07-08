@@ -5,6 +5,7 @@ langchain-core
 # Community / Document Processing
 langchain-community
 langchain-text-splitters
+langchain-experimental
 faiss-cpu
 
 # OpenAI Integration
