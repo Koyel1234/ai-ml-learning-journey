@@ -6,7 +6,7 @@
     `source <venv_name>/Scripts/Activate`
 - This creation of virtual environment is one time activity.
 - Virtual environemnt should be activated each time work IDE is closed.
-- You can name the virtual environment .venv which will lead to create folder named .venv and put it in .gitigore file to make it gitignored dring file pushing.
+- You can name the virtual environment `.venv` which will lead to create folder named `.venv` and put it in `.gitigore` file to make it gitignored dring file pushing.
 
 ## Required Libraries
 - There is a requirement.txt file added with all necessary libraries needed for GenAI learning.
