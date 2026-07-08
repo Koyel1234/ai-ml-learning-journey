@@ -1,5 +1,5 @@
 # LangChain Core
-LangChain
+LangChain # while installing pip automatically converts it to its lowercase canonical form langchain before reaching to PyPI
 langchain-core
 
 # Community / Document Processing
@@ -7,6 +7,9 @@ langchain-community
 langchain-text-splitters
 langchain-experimental
 faiss-cpu
+chromadb
+langchain-chroma
+titoken
 
 # OpenAI Integration
 langchain-openai
