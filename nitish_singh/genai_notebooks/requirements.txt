@@ -34,6 +34,9 @@ huggingface-hub
 pypdf
 beautifulsoup4
 
+# youtube chatbot
+youtube-transcript-api
+
 # Environment Variable Management
 python-dotenv
 
