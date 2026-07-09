@@ -1,0 +1,69 @@
+# LangChain Core
+LangChain # while installing pip automatically converts it to its lowercase canonical form langchain before reaching to PyPI
+langchain-core
+
+# Community / Document Processing
+langchain-community
+langchain-text-splitters
+langchain-experimental
+faiss-cpu
+chromadb
+langchain-chroma
+titoken
+
+# retrievers
+wikipedia
+
+# OpenAI Integration
+langchain-openai
+openai
+
+# Anthropic Integration
+langchain-anthropic
+
+# Google Gemini (PaLM) Integration
+langchain-google-genai
+google-generativeai
+
+# Hugging Face Integration
+langchain-huggingface
+transformers
+huggingface-hub
+
+# document loading
+pypdf
+beautifulsoup4
+
+# youtube chatbot
+youtube-transcript-api
+
+# tools
+duckduckgo-search
+requests
+ddgs
+
+# prompts
+langchainhub
+
+# Environment Variable Management
+python-dotenv
+
+# Machine Learning Utilities
+numpy
+scikit-learn
+
+ipykernel
+
+streamlit
+torch
+torchvision
+sentence-transformers
+
+pydantic
+pydantic[email]
+
+# to visualize chains in LangChain
+grandalf
+
+# PDF Generation
+reportlab
