@@ -42,6 +42,9 @@ duckduckgo-search
 requests
 ddgs
 
+# prompts
+langchainhub
+
 # Environment Variable Management
 python-dotenv
 
