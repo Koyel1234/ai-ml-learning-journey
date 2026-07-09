@@ -37,6 +37,11 @@ beautifulsoup4
 # youtube chatbot
 youtube-transcript-api
 
+# tools
+duckduckgo-search
+requests
+ddgs
+
 # Environment Variable Management
 python-dotenv
 
