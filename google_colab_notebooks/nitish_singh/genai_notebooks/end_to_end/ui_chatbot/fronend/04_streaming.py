@@ -3,6 +3,10 @@ from langgraph_backend import chatbot
 from langchain_core.messages import HumanMessage
 
 
+# in streaming user doesnt have to wait till full output got gen to see output
+# also it is more readble for user, better user experience
+# also, if user can see in token-by-token fashion, the if they are not liking it, they can stop it in between, so better for unnecessary token print
+
 # st.session_state -> dict -> this resets only when user refreshes page, otherwise it will keep accumulating all messages, without it, normal list like below message_history with each user_input full script will be rerun again, with no saving of chat history
 
 CONFIG = {'configurable': {'thread_id': 'thread-1'}}
@@ -35,12 +39,20 @@ if user_input:
     with st.chat_message('user'):
         st.text(user_input)
 
-    response = chatbot.invoke({'messages': [HumanMessage(content=user_input)]}, config=CONFIG)
-    ai_message = response['messages'][-1].content
+#    response = chatbot.invoke({'messages': [HumanMessage(content=user_input)]}, config=CONFIG)
+ #   ai_message = response['messages'][-1].content
                    
     # secondly add the new message to message_history
-    st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
+  #  st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
     with st.chat_message('assistant'):
-        st.text(ai_message)
-
+        #st.text(ai_message)
+        ai_message = st.write_stream(
+                message_chunk.content for message_chunk, metadata in chatbot.stream(
+                    {'messages': [HumanMessage(content=user_input}]},
+                    config= {'configurable': {'thread_id': 'thread-1'}},
+                    stream_mode = ' messsages'
+                    )
+                )
+    
+    st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
 

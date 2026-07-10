@@ -9,7 +9,7 @@ langchain-experimental
 faiss-cpu
 chromadb
 langchain-chroma
-titoken
+# titoken
 
 # retrievers
 wikipedia
@@ -67,3 +67,6 @@ grandalf
 
 # PDF Generation
 reportlab
+
+# langgraph
+langgraph

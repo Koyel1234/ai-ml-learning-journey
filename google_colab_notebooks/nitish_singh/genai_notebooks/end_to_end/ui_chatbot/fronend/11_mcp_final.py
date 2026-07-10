@@ -1,3 +1,5 @@
+## this has no rag capability
+
 ##Steps for Adding Threading in UI
 #
 #-> add a sidebar with title + A Start Chat Button + A title named 'My Conversation'
@@ -29,8 +31,8 @@
 
 
 import streamlit as st
-from langgraph_backend import chatbot
-from langchain_core.messages import HumanMessage
+from langgraph_backend_database import chatbot, retrieve_all_threads
+from langchain_core.messages import HumanMessage, AIMessage
 import uuid
 
 
@@ -41,7 +43,7 @@ def generate_thread_id():
     return thread_id
 
 
-def rest_chat():
+def reset_chat():
     thread_id = generate_thread_id()
     st.session_state['thread_id'] = thread_id
     st.session_state['thread_id'] = thread_id
@@ -54,6 +56,16 @@ def add_thread(thread_id):
 def load_conversation(thread_id):
     return chatbot.get_state(config={'configurable': {'thread_id': thread_id}}).values['messsages']
 
+def _submit_async(coro):
+    return asyncio.run_coroutine_threadsafe(coro, _ASYNC_LOOP)
+
+def run_async(coro):
+    return _submit_async(coro).result()
+
+def submit_async_task(coro):
+    """Schedule a coroutine on the backend event loop."""
+    return _submit_async(coro)
+
 # ************************************************** Session Setup ***************************************
 if 'message_history' not in st.session_state:
     st.session_state['message_history'] = []
@@ -62,8 +74,11 @@ if 'message_history' not in st.session_state:
 if 'thread_id' not in st.session_state:
     st.session_state['thread_id'] = generate_thread_id()
 
+# if 'chat_threads' not in st.session_state:
+#     st.session_state['chat_threads'] = []
+
 if 'chat_threads' not in st.session_state:
-    st.session_state['chat_threads'] = []
+    st.session_state['chat_threads'] = retrieve_all_threads()
 
 add_thread(st.session_state['thread_id'])
 
@@ -88,11 +103,11 @@ for thread_id in st.session_state['chat_threads'][::-1]:
         temp_messages = []
 
         for msg in messages:
-            if isinstance(message, HumanMessage):
+            if isinstance(msg, HumanMessage):
                 role = 'user'
             else:
-                role='assistance'
-            temp_messages.append({'role': role, 'content': msg.content)
+                role = 'assistant'
+            temp_messages.append({'role': role, 'content': msg.content})
 
         st.session_state['message_history'] = temp_messages
 
@@ -115,16 +130,56 @@ if user_input:
     with st.chat_message('user'):
         st.text(user_input)
     
-    CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']}}
+    # CONFIG = {'configurable': {'thread_id': st.session_state['thread_id']}}
+    CONFIG = {
+        'configurable': {'thread_id': st.session_state['thread_id']},
+        "metadata": {
+            "thread_id": st.session_state['thread_id']
+        },
+        "run_name": "chatbot_turn"
+    }
 
-    with st.chat_message('assistant'):
-        ai_message = st.write_stream(
-                message_chunk.content for message_chunk, metadata in chatbot.stream(
-                    {'messages': [HumanMessage(content=user_input}]},
-                    config= CONFIG,
-                    stream_mode = ' messsages'
-                    )
-                )
+    # with st.chat_message('assistant'):
+    #     ai_message = st.write_stream(
+    #             message_chunk.content for message_chunk, metadata in chatbot.stream(
+    #                 {'messages': [HumanMessage(content=user_input)]},
+    #                 config=CONFIG,
+    #                 stream_mode='messages'
+    #             )
+    #         )
+
+    # Assistant streaming block
+    with st.chat_message("assistant"):
+        # use a mutable holder so the generator can set/modify it
+        status_holder = {"box": None}
+
+        def ai_only_stream():
+            event_queue: queue.Queue = queue.Queue()
+
+            async def run_stream():
+                try:
+                    async for message_chunk, metadata in chatbot.astream(
+                        {"messages": [HumanMessage(content=user_input)]},
+                        config=CONFIG,
+                        stream_mode="messages"
+                    ):
+                        event_queue.put((message_chunk, metadata))
+                except Exception as exc:
+                    event_queue.put(("error", exc))
+                finally:
+                    event_queue.put(None)
+
+            submit_async_task(run_stream())
+        
+        ai_message = st.write_stream(ai_only_stream())
+
+        # Finalize only if a tool was actually used
+        if status_holder["box"] is not None:
+            status_holder["box"].update(
+                label="Tool finished", state="complete", expanded=False
+            )
     
-    st.session_state['message_history'].append({'role': 'assistant', 'content': ai_message})
-
+    # Save assistant message
+    st.session_state['message_history'].append(
+        {'role': 'assistant', 'content': ai_message}
+    )

@@ -34,7 +34,7 @@ def chat_node(state: ChatState):
     return {"messages": [response]}
 
 
-conn = sqlite3.connect(database='chatbot.db', check_same_thread=False)
+conn = sqlite3.connect(database='chatbot.db', check_same_thread=False) #check_same_thread could be true where it may happen that we need diff db for different chats based on te system design, but here we don't need that, we need - from whatever thread that db gou updated, it should be accessible ffom all other threads
 # Checkpointer
 checkpointer = SqliteSaver()
 
