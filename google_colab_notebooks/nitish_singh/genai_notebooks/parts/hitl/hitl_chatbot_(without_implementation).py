@@ -8,7 +8,10 @@ from langchain_core.tools import tool
 from dotenv import load_dotenv
 import requests
 from langchain_openai import ChatOpenAI
+import os
 
+
+STOCKPRICE_API_KEY = os.getenv("STOCKPRICE_API_KEY")
 
 load_dotenv()
 
@@ -28,7 +31,7 @@ def get_stock_price(symbol: str) -> dict:
     """
     url = (
         "https://www.alphavantage.co/query"
-        f"?function=GLOBAL_QUOTE&symbol={symbol}&apikey=C9PE94QUEW9VWGFM"
+        f"?function=GLOBAL_QUOTE&symbol={symbol}&apikey={STOCKPRICE_API_KEY}"
     )
     r = requests.get(url)
     return r.json()

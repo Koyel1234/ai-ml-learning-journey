@@ -13,6 +13,12 @@ from langgraph.types import interrupt, Command
 
 load_dotenv()
 
+
+import os
+
+
+STOCKPRICE_API_KEY = os.getenv("STOCKPRICE_API_KEY")
+
 # -----------------
 # 1. LLM
 # -------------------
@@ -29,27 +35,40 @@ def get_stock_price(symbol: str) -> dict:
     """
     url = (
         "https://www.alphavantage.co/query"
-        f"?function=GLOBAL_QUOTE&symbol={symbol}&apikey=C9PE94QUEW9VWGFM"
+        f"?function=GLOBAL_QUOTE&symbol={symbol}&apikey={STOCKPRICE_API_KEY}"
     )
     r = requests.get(url)
     return r.json()
 
 
+# below tool will consider anything apart from "yes" as "no"
 @tool
 def purchase_stock(symbol: str, quantity: int) -> dict:
     """
     Simulate purchasing a given quantity of a stock symbol.
 
+    HUMAN-IN-THE-LOOP:
+    Before confirming the purchase, this tool will interrupta
+    and wait for ahuman decision ("yes"/ anything else).
+
     NOTE: this is a mock implementation:
-    - No real brokerage API is called.
-    - It simply returns a confirmation payload. 
+    - No real brokerage API is called. 
     """
-    return {
-        "status": "success",
-        "message": f"Purchase order placed for {quantity} shares of {symbol}.",
-        "symbol": symbol,
-        "quantity": quantity
-    }
+    decision = interrupt(f"Approve buying {quantity} shares of {symbol}? (yes/no)")
+    if isinstance(decision, str) and decision.lower() == "yes":
+        return {
+            "status": "success",
+            "message": f"Purchase order placed for {quantity} shares of {symbol}.",
+            "symbol": symbol,
+            "quantity": quantity
+        }
+    else:
+        return {
+            "status": "cancelled",
+            "message": f"Purchase order {quantity} shares of {symbol} was declined by human.",
+            "symbol": symbol,
+            "quantity": quantity
+        }
 
 tools = [get_stock_price, purchase_stock]
 llm_with_tools = llm.bind_tools(tools)
