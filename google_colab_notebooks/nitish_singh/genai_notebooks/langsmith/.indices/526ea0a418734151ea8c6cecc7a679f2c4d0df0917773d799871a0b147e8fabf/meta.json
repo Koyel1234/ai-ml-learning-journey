@@ -1,0 +1,6 @@
+{
+  "pdf_path": "C:\\Users\\koyel\\Downloads\\python_practice\\ai_ml_learning_journey\\google_colab_notebooks\\nitish_singh\\genai_notebooks\\langsmith\\islr.pdf",
+  "chunk_size": 1000,
+  "chunk_overlap": 150,
+  "embedding_model": "text-embedding-3-small"
+}

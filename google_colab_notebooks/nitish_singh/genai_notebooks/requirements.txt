@@ -70,3 +70,10 @@ reportlab
 
 # langgraph
 langgraph
+
+# short term memory
+langgraph-checkpoint-postgres
+psycopg[binary,pool] 
+
+
+langsmith
