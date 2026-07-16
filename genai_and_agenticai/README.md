@@ -53,3 +53,8 @@ Scripts present:
 2. rag.ipynb 
 3. tools.ipynb
 4. 
+
+
+Referred YouTube playlists:
+- CampusX LangChain playlist: https://www.youtube.com/playlist?list=PLKnIA16_RmvaTbihpo4MtzVm4XOQa0ER0
+- CampusX LangGrpah playlist: https://www.youtube.com/playlist?list=PLKnIA16_RmvYsvB8qkUQuJmJNuiCUJFPL

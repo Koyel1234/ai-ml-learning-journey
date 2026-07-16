@@ -6,3 +6,5 @@
 Added faiss vectorstore (`.indices` folder) here in github, but in industrial setup this should b=not be pushed to git same as data should not. 
 
 as here we are not using private/restricted/confidential data, here we are loading this data or any pdf file and corresponding index used in any gen ai works here.
+
+Video - https://www.youtube.com/watch?v=4FFspU4riHk&list=PLKnIA16_RmvYsvB8qkUQuJmJNuiCUJFPL&index=16

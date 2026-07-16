@@ -23,3 +23,6 @@ A MessagesPlaceholder in LangChain is a special placeholder used inside a ChatPr
 ChatPromptTemplate is used for multi turn messsages, Promptemplate used for single turn messages.
 
 Here we used chat_history.txt to store older chats, ideally in prod setup is should be loaded and fetched from database.
+
+
+video link - https://www.youtube.com/watch?v=3TGqlQxpuU0&list=PLKnIA16_RmvaTbihpo4MtzVm4XOQa0ER0&index=6

@@ -24,4 +24,4 @@ Parameters of ChatModels:<br><br>
 ## Document Similarity Search
 This is RAG fundamental.
 
-
+video - https://www.youtube.com/watch?v=HdcLE8JuMrA&list=PLKnIA16_RmvaTbihpo4MtzVm4XOQa0ER0&index=5
